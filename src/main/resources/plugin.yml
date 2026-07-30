@@ -1,0 +1,10 @@
+name: QuickVoiceChat
+version: 1.0
+main: com.subatomicplanets.quickvoicechat.QuickVoiceChat
+api-version: '26.2'
+author: SubatomicPlanets
+description: Simple voice chat plugin
+commands:
+  vc:
+    description: Connect to the voice chat
+    usage: /vc

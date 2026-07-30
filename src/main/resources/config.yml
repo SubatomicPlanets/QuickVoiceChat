@@ -1,0 +1,10 @@
+webserver:
+  address: "127.0.0.1"
+  port: 25588
+chat:
+  auto-send: true
+  connection-messages: true
+voice:
+  falloff-type: "game"
+  min-distance: 1.0
+  max-distance: 30.0
