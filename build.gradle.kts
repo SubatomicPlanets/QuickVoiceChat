@@ -7,7 +7,7 @@ java {
 }
 
 group = "com.subatomicplanets.quickvoicechat"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
