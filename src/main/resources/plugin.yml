@@ -1,5 +1,5 @@
 name: QuickVoiceChat
-version: 1.0.0
+version: 1.0.1
 main: com.subatomicplanets.quickvoicechat.QuickVoiceChat
 api-version: '26.2'
 author: SubatomicPlanets
