@@ -12,15 +12,15 @@ Don't forget to forward the port you use for the web server!
 
 ## Configuration
 QuickVoiceChat uses a YAML config file, which is generated on the first run automatically. The following properties are customizable:
-- `webserver.address`: The address for the web server. Most of the time this will be your server's domain name (e.g. "myserver.net")
+- `webserver.address`: The address for the web server. Most of the time this will be your server's domain name (e.g. "myserver.net").
 - `webserver.port`: The port used by the web server. You can use the standard HTTPS port (443) or a custom port.
-- `chat.auto-send`: If true, automatically sends a player a voice chat link when they join the server
-- `chat.connection-messages`: If true, sends notification messages in the chat when the voice chat connects or disconnects for some reason
+- `chat.auto-send`: If true, automatically sends a player a voice chat link when they join the server.
+- `chat.connection-messages`: If true, sends notification messages in the chat when the voice chat connects or disconnects for some reason.
 - `voice.falloff-type`: The type of falloff used by the voice chat. Currently supported are "physics" for a realistic falloff, "game" for a slightly realistic but less intense falloff, and "linear" for a simple linear falloff.
 - `voice.min-distance`: The minimum distance used by the falloff.
 - `voice.max-distance`: The maximum distance used by the falloff.
-- `cert-pem-path`: The path to your certificate file in PEM format
-- `key-pem-path`: The path to your key file in PEM format
+- `cert-pem-path`: The path to your certificate file in PEM format.
+- `key-pem-path`: The path to your key file in PEM format.
 
 ## Security and privacy
 QuickVoiceChat is perfect for small, self-hosted, private servers. The web server tokens are securely managed, and the web server only allows connections from the set of IP addresses that have recently requested a voice chat link. The web server uses HTTPS, the web sockets use WSS, and the actual voice data is end-to-end encrypted using the standard WebRTC protocol. Players can only connect to the voice chat if they are currently on the Minecraft server, and they automatically get disconnected when they disconnect in Minecraft. Releases are built using GitHub Actions and artifact attestations. The only dependencies used are Paper, JUnit (for tests), and Netty (for the web server), all of which are incredibly well known.
