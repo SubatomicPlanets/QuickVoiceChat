@@ -7,7 +7,7 @@ QuickVoiceChat is a simple, minimal, and lightweight Minecraft server plugin for
 When a player joins (or when they type /vc), they can click a text in the Minecraft chat and are linked to a website. The web server is hosted by this plugin and automatically uses web sockets and WebRTC to open voice chat connections and adjust player volumes.
 
 ## How to set it up
-To use QuickVoiceChat on your server, simply download the newest QuickVoiceChat.jar and put it in the plugins folder. You can directly create the config file (QuickVoiceChat/config.yml) or let the plugin generate it by restarting your server. HTTPS is used when the plugin detects `key.pem` and `cert.pem` in the plugin data folder. If these files are missing, it will fall back to HTTP. The recommended way to use this plugin is to get a domain name for your server and get a certificate from services like Let's Encrypt. This is because HTTP has many limits in most browsers. Self-signed certificates might show a warning when visiting the site and may also have restrictions.
+To use QuickVoiceChat on your server, simply download the newest QuickVoiceChat.jar and put it in the plugins folder. You can directly create the config file (QuickVoiceChat/config.yml) or let the plugin generate it by restarting your server. HTTPS is used when the plugin finds the `key.pem` and `cert.pem` files. The default location for these files is in the plugin data folder, but this can be changed in the config file. If these files are missing, it will fall back to HTTP. The recommended way to use this plugin is to get a domain name for your server and get a certificate from services like Let's Encrypt. This is because HTTP has many limits in most browsers. Self-signed certificates might show a warning when visiting the site and may also have restrictions.
 Don't forget to forward the port you use for the web server!
 
 ## Configuration
@@ -19,6 +19,8 @@ QuickVoiceChat uses a YAML config file, which is generated on the first run auto
 - `voice.falloff-type`: The type of falloff used by the voice chat. Currently supported are "physics" for a realistic falloff, "game" for a slightly realistic but less intense falloff, and "linear" for a simple linear falloff.
 - `voice.min-distance`: The minimum distance used by the falloff.
 - `voice.max-distance`: The maximum distance used by the falloff.
+- `cert-pem-path`: The path to your certificate file in PEM format
+- `key-pem-path`: The path to your key file in PEM format
 
 ## Security and privacy
 QuickVoiceChat is perfect for small, self-hosted, private servers. The web server tokens are securely managed, and the web server only allows connections from the set of IP addresses that have recently requested a voice chat link. The web server uses HTTPS, the web sockets use WSS, and the actual voice data is end-to-end encrypted using the standard WebRTC protocol. Players can only connect to the voice chat if they are currently on the Minecraft server, and they automatically get disconnected when they disconnect in Minecraft. Releases are built using GitHub Actions and artifact attestations. The only dependencies used are Paper, JUnit (for tests), and Netty (for the web server), all of which are incredibly well known.
