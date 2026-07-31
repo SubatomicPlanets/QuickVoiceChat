@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 
+import java.nio.file.Path;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -38,6 +39,8 @@ public final class QuickVoiceChat extends JavaPlugin implements Listener {
 
         // Get config for managers
         int webPort = getConfig().getInt("webserver.port", 25588);
+        Path certPemPath = Path.of(getConfig().getString("webserver.cert-pem-path", "cert.pem"));
+        Path keyPemPath = Path.of(getConfig().getString("webserver.key-pem-path", "key.pem"));
         double maxDistance = getConfig().getDouble("voice.max-distance", 30.0);
         double minDistance = getConfig().getDouble("voice.min-distance", 1.0);
         String falloffType = getConfig().getString("voice.falloff-type", "game");
@@ -45,7 +48,7 @@ public final class QuickVoiceChat extends JavaPlugin implements Listener {
         // Create managers
         tokenManager = new TokenManager();
         webSocketManager = new WebSocketManager(this);
-        webServerManager = new WebServerManager(this, tokenManager, webSocketManager, webPort);
+        webServerManager = new WebServerManager(this, tokenManager, webSocketManager, webPort, certPemPath, keyPemPath);
         proximityVoiceManager = new ProximityVoiceManager(webSocketManager, maxDistance, minDistance, falloffType);
 
         // Connection messages

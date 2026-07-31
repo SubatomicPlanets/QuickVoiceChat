@@ -1,6 +1,8 @@
 webserver:
   address: "127.0.0.1"
   port: 25588
+  cert-pem-path: "cert.pem"
+  key-pem-path: "key.pem"
 chat:
   auto-send: true
   connection-messages: true

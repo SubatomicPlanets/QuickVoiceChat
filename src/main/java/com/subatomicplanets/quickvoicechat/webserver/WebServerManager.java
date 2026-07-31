@@ -1,6 +1,7 @@
 package com.subatomicplanets.quickvoicechat.webserver;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import com.subatomicplanets.quickvoicechat.QuickVoiceChat;
 import com.subatomicplanets.quickvoicechat.token.TokenManager;
@@ -27,6 +28,8 @@ public class WebServerManager {
     private final TokenManager tokenManager;
     private final WebSocketManager webSocketManager;
     private final int port;
+    private final Path certPemPath;
+    private final Path keyPemPath;
 
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
@@ -35,11 +38,15 @@ public class WebServerManager {
     public WebServerManager(QuickVoiceChat plugin,
             TokenManager tokenManager,
             WebSocketManager webSocketManager,
-            int port) {
+            int port,
+            Path certPemPath,
+            Path keyPemPath) {
         this.plugin = plugin;
         this.tokenManager = tokenManager;
         this.webSocketManager = webSocketManager;
         this.port = port;
+        this.certPemPath = certPemPath;
+        this.keyPemPath = keyPemPath;
     }
 
     public void start() throws Exception {
@@ -82,9 +89,9 @@ public class WebServerManager {
 
     private SslContext loadSslContext() {
         try {
-            File dataFolder = plugin.getDataFolder();
-            File certFile = new File(dataFolder, "cert.pem");
-            File keyFile = new File(dataFolder, "key.pem");
+            Path dataFolderPath = plugin.getDataFolder().toPath();
+            File certFile = dataFolderPath.resolve(certPemPath).toFile();
+            File keyFile = dataFolderPath.resolve(keyPemPath).toFile();
 
             if (certFile.exists() && keyFile.exists()) {
                 return SslContextBuilder.forServer(certFile, keyFile).build();
