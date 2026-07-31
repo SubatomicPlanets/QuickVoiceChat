@@ -12,7 +12,10 @@ jobs:
   build-and-release:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write
       contents: write
+      attestations: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -31,6 +34,11 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
+
+      - name: Generate artifact attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: 'build/libs/QuickVoiceChat.jar'
 
       - name: Create GitHub Release Draft
         uses: softprops/action-gh-release@v3
