@@ -21,7 +21,7 @@ QuickVoiceChat uses a YAML config file, which is generated on the first run auto
 - `voice.max-distance`: The maximum distance used by the falloff.
 
 ## Security and privacy
-QuickVoiceChat is perfect for small, self-hosted, private servers. The web server tokens are securely managed, and the web server only allows connections from the set of IP addresses that have recently requested a voice chat link. The web server uses HTTPS, the web sockets use WSS, and the actual voice data is end-to-end encrypted using the standard WebRTC protocol. Players can only connect to the voice chat if they are currently on the Minecraft server, and they automatically get disconnected when they disconnect in Minecraft.
+QuickVoiceChat is perfect for small, self-hosted, private servers. The web server tokens are securely managed, and the web server only allows connections from the set of IP addresses that have recently requested a voice chat link. The web server uses HTTPS, the web sockets use WSS, and the actual voice data is end-to-end encrypted using the standard WebRTC protocol. Players can only connect to the voice chat if they are currently on the Minecraft server, and they automatically get disconnected when they disconnect in Minecraft. Releases are built using GitHub Actions.
 > [!NOTE]
 > Because HTTP/HTTPS servers use TCP, the initial connection cannot be blocked on the application level. This means network scanners can still see that a server is running at IP:WEBSERVER-PORT. This could be fixed by changing firewall rules automatically but I have not found a way to do this in a nice and simple cross-platform and docker-friendly way. It is recommended to use a not-well-known port for the web server as that makes it harder to find.
 
@@ -35,4 +35,4 @@ QuickVoiceChat is perfect for small, self-hosted, private servers. The web serve
 - Maybe support external web servers
 - Maybe find a way to change firewall rules that doesn't require too much user setup for a fully hidden web server
 - Add more tests
-- Maybe add build automation
+- Maybe add Artifact attestations for built files
